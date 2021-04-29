@@ -69,6 +69,10 @@ router.post('/', (req, res) => {
         res.json(dbUserData);
       });
     })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.post('/login', (req, res) => {
@@ -105,8 +109,7 @@ router.post('/logout', (req, res) => {
     req.session.destroy(() => {
       res.status(204).end();
     });
-  }
-  else {
+  } else {
     res.status(404).end();
   }
 });
